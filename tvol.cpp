@@ -11,7 +11,8 @@
 void BangVol(HWND caller, const char *bangName, const char *args);
 
 // Actual main function
-extern "C" int initModuleEx(HWND ParentWnd, HINSTANCE dllInst, LPCSTR szPath) {
+extern "C" int initModuleEx(HWND ParentWnd, HINSTANCE dllInst, LPCSTR szPath)
+{
 	// register the bangs with Litestep
 	AddBangCommandEx("!tVolSet", BangVol);
 	AddBangCommandEx("!tVolGet", BangVol);
@@ -20,18 +21,22 @@ extern "C" int initModuleEx(HWND ParentWnd, HINSTANCE dllInst, LPCSTR szPath) {
 	return 0;
 }
 
-void BangVol(HWND caller, const char* bangName, const char* args) {
+void BangVol(HWND caller, const char* bangName, const char* args)
+{
 	bool bToggleMute = false;
 	bool bSet = false;
 	bool bGet = false;
 
-	if (bangName[5] == 'T' || bangName[5] == 't') {
+	if (bangName[5] == 'T' || bangName[5] == 't')
+	{
 		bToggleMute = true;
 	}
-	else if (bangName[5] == 'S' || bangName[5] == 's') {
+	else if (bangName[5] == 'S' || bangName[5] == 's')
+	{
 		bSet = true;
 	}
-	else {
+	else
+	{
 		bGet = true;
 	}
 
@@ -44,7 +49,8 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 	 */
 
 	HMIXER hMixer;
-	if (mixerOpen(&hMixer, 0, 0, 0, MIXER_OBJECTF_HMIXER) != MMSYSERR_NOERROR) {
+	if (mixerOpen(&hMixer, 0, 0, 0, MIXER_OBJECTF_HMIXER) != MMSYSERR_NOERROR)
+	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
 	}
 
@@ -57,7 +63,8 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 	MIXERLINE ml = {0};
 	ml.cbStruct = sizeof(MIXERLINE);
 	ml.dwComponentType = MIXERLINE_COMPONENTTYPE_DST_SPEAKERS;
-	if (mixerGetLineInfo((HMIXEROBJ)hMixer, &ml, MIXER_OBJECTF_HMIXER | MIXER_GETLINEINFOF_COMPONENTTYPE) != MMSYSERR_NOERROR) {
+	if (mixerGetLineInfo((HMIXEROBJ)hMixer, &ml, MIXER_OBJECTF_HMIXER | MIXER_GETLINEINFOF_COMPONENTTYPE) != MMSYSERR_NOERROR)
+	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
 	}
 
@@ -70,10 +77,12 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 	MIXERLINECONTROLS mlc = {0};
 	MIXERCONTROL mc = {0};
 
-	if (bToggleMute) {
+	if (bToggleMute)
+	{
 		mlc.dwControlType = MIXERCONTROL_CONTROLTYPE_MUTE;
 	}
-	else {
+	else
+	{
 		mlc.dwControlType = MIXERCONTROL_CONTROLTYPE_VOLUME;
 	}
 
@@ -83,7 +92,8 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 	mlc.cbmxctrl = sizeof(MIXERCONTROL);
 	mlc.pamxctrl = &mc;
 
-	if (mixerGetLineControls((HMIXEROBJ)hMixer, &mlc, MIXER_OBJECTF_HMIXER | MIXER_GETLINECONTROLSF_ONEBYTYPE) != MMSYSERR_NOERROR)	{
+	if (mixerGetLineControls((HMIXEROBJ)hMixer, &mlc, MIXER_OBJECTF_HMIXER | MIXER_GETLINECONTROLSF_ONEBYTYPE) != MMSYSERR_NOERROR)
+	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
 	}
 
@@ -91,11 +101,13 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 	MIXERCONTROLDETAILS_BOOLEAN	mcdb = {0};
 	MIXERCONTROLDETAILS_UNSIGNED mcdu = {0};
 
-	if (bToggleMute) {
+	if (bToggleMute)
+	{
 		mcd.paDetails = &mcdb;
 		mcd.cbDetails = sizeof(MIXERCONTROLDETAILS_BOOLEAN);
 	}
-	else {
+	else
+	{
 		mcd.paDetails = &mcdu;
 		mcd.cbDetails = sizeof(MIXERCONTROLDETAILS_UNSIGNED);
 	}
@@ -105,21 +117,25 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 	mcd.cChannels = 1;
 	mcd.cMultipleItems = 0;
 
-	if (mixerGetControlDetails((HMIXEROBJ) hMixer, &mcd, MIXER_SETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR) {
+	if (mixerGetControlDetails((HMIXEROBJ) hMixer, &mcd, MIXER_SETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR)
+	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
 	}
 
 	mcdb.fValue = !mcdb.fValue;
 	
-	if (bSet) {
+	if (bSet)
+	{
 		//full volume at 65535, max dwords can handle is 4294967295
 		mcdu.dwValue = atol(args);
 	}
 	
-	if (bGet) {
+	if (bGet)
+	{
 		/*int size = 1;
 		DWORD tmpVol = mcdu.dwValue;
-		while (tmpVol > 9) {
+		while (tmpVol > 9)
+		{
 			tmpVol /= 10;
 			size++;
 		}
@@ -128,7 +144,8 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 		tmp[size] = '\0';
 
 		tmpVol = mcdu.dwValue;
-		for (int i = 1; i <= size; ++i) {
+		for (int i = 1; i <= size; ++i)
+		{
 			tmp[size - i] = (char)(tmpVol % 10 + (int)'0');
 			tmpVol /= 10;
 		}*/
@@ -138,8 +155,10 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 
 		LSSetVariable("tVolVolume", tmp);
 	}
-	else {
-		if (mixerSetControlDetails((HMIXEROBJ)hMixer, &mcd, MIXER_SETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR) {
+	else
+	{
+		if (mixerSetControlDetails((HMIXEROBJ)hMixer, &mcd, MIXER_SETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR)
+		{
 			MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
 		}
 	}
@@ -149,7 +168,8 @@ void BangVol(HWND caller, const char* bangName, const char* args) {
 
 // -------------------------------------------------------
 // cleanup (opposite of init())
-extern "C" void quitModule(HINSTANCE dllInst) {
+extern "C" void quitModule(HINSTANCE dllInst)
+{
 	RemoveBangCommand("!tVolSet");
 	RemoveBangCommand("!tVolGet");
 	RemoveBangCommand("!tVolToggleMute");
