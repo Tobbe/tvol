@@ -1,11 +1,14 @@
 // Written by Tobbe
 // 2006-10-19
-// Latest update: 2007-02-28
-
-#include <windows.h>
-#include "tvol.h"
+// Latest update: 2009-02-28
 
 #define WIN32_LEAN_AND_MEAN
+#define STRICT
+#define NOCRYPT
+
+#include <windows.h>
+#include <MMSystem.h>
+#include "tvol.h"
 
 // just initializing the functions
 void BangVol(HWND caller, const char *bangName, const char *args);
