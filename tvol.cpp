@@ -101,7 +101,7 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 	}
 
 	MIXERCONTROLDETAILS mcd = {0};
-	MIXERCONTROLDETAILS_BOOLEAN	mcdb = {0};
+	MIXERCONTROLDETAILS_BOOLEAN mcdb = {0};
 	MIXERCONTROLDETAILS_UNSIGNED mcdu = {0};
 
 	if (bToggleMute)
@@ -135,24 +135,6 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 	
 	if (bGet)
 	{
-		/*int size = 1;
-		DWORD tmpVol = mcdu.dwValue;
-		while (tmpVol > 9)
-		{
-			tmpVol /= 10;
-			size++;
-		}
-
-		char tmp[6];
-		tmp[size] = '\0';
-
-		tmpVol = mcdu.dwValue;
-		for (int i = 1; i <= size; ++i)
-		{
-			tmp[size - i] = (char)(tmpVol % 10 + (int)'0');
-			tmpVol /= 10;
-		}*/
-
 		char tmp[6];
 		wsprintf(tmp, "%lu", mcdu.dwValue);
 

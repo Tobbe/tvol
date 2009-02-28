@@ -48,7 +48,6 @@
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -133,7 +132,6 @@
 				BufferSecurityCheck="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -156,7 +154,6 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				OptimizeForWindows98="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				ImportLibrary="$(OutDir)/tVol.lib"
