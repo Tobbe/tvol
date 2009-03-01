@@ -1,6 +1,6 @@
 // Written by Tobbe
 // 2006-10-19
-// Latest update: 2009-02-28
+// Latest update: 2009-03-01
 
 #define WIN32_LEAN_AND_MEAN
 #define STRICT
@@ -55,6 +55,7 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 	if (mixerOpen(&hMixer, 0, 0, 0, MIXER_OBJECTF_HMIXER) != MMSYSERR_NOERROR)
 	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
+		return;
 	}
 
 	/**
@@ -69,6 +70,7 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 	if (mixerGetLineInfo((HMIXEROBJ)hMixer, &ml, MIXER_OBJECTF_HMIXER | MIXER_GETLINEINFOF_COMPONENTTYPE) != MMSYSERR_NOERROR)
 	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
+		return;
 	}
 
 	/**
@@ -98,6 +100,7 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 	if (mixerGetLineControls((HMIXEROBJ)hMixer, &mlc, MIXER_OBJECTF_HMIXER | MIXER_GETLINECONTROLSF_ONEBYTYPE) != MMSYSERR_NOERROR)
 	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
+		return;
 	}
 
 	MIXERCONTROLDETAILS mcd = {0};
@@ -123,6 +126,7 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 	if (mixerGetControlDetails((HMIXEROBJ) hMixer, &mcd, MIXER_SETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR)
 	{
 		MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
+		return;
 	}
 
 	mcdb.fValue = !mcdb.fValue;
@@ -145,6 +149,7 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 		if (mixerSetControlDetails((HMIXEROBJ)hMixer, &mcd, MIXER_SETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR)
 		{
 			MessageBox(caller, "Couldn't execute the requested operation", "Error", MB_OK);
+			return;
 		}
 	}
 
