@@ -1,7 +1,7 @@
 #ifndef __TVOL_H_
 #define __TVOL_H_
 
-#include "../LiteStep24x/lsapi/lsapi.h"
+#include "./lsapi.h"
 
 #ifdef __cplusplus
 extern "C" {

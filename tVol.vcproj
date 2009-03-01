@@ -146,7 +146,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="..\LiteStep24x\Release_VC71\lsapi.lib winmm.lib"
+				AdditionalDependencies=".\lsapi.lib winmm.lib"
 				OutputFile="$(OutDir)/tVol.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
