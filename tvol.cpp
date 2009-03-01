@@ -48,8 +48,6 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 		bGet = true;
 	}
 
-	//DWORD dwControlID = 0;
-
 	/**
 	 *
 	 * Open the mixer, set hMixer
@@ -135,13 +133,13 @@ void BangVol(HWND caller, const char* bangName, const char* args)
 	}
 
 	mcdb.fValue = !mcdb.fValue;
-	
+
 	if (bSet)
 	{
 		//full volume at 65535, max dwords can handle is 4294967295
 		mcdu.dwValue = atol(args);
 	}
-	
+
 	if (bGet)
 	{
 		char tmp[6];
