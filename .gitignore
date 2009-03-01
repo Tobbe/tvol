@@ -1,5 +1,5 @@
 tVol.ncb
 tVol.suo
-tVol.vcproj.*
-Release/
-
+*.vcproj.*
+*Release/
+*Debug/
