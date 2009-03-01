@@ -64,6 +64,7 @@
 				AdditionalDependencies="..\litestep\core\libs\lsapi.lib winmm.lib .\libct.lib"
 				OutputFile="$(OutDir)/tVol.dll"
 				LinkIncremental="2"
+				IgnoreAllDefaultLibraries="true"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/tVol.pdb"
 				SubSystem="2"
@@ -149,7 +150,7 @@
 				OutputFile="$(OutDir)/tVol.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				IgnoreAllDefaultLibraries="false"
+				IgnoreAllDefaultLibraries="true"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -210,6 +211,10 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath=".\readme.txt"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
