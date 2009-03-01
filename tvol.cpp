@@ -2,7 +2,6 @@
 // 2006-10-19
 // Latest update: 2009-03-01
 
-#define WIN32_LEAN_AND_MEAN
 #define STRICT
 #define NOCRYPT
 
