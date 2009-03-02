@@ -1,5 +1,5 @@
-tVol - A tiny volume controling module written by Tobbe
-=======================================================
+tVol - A tiny volume controlling module written by Tobbe
+========================================================
 
 This module is supposed to control the main system volume using simple bang
 commands. What sets this module apart from all other volume changing modules
